@@ -44,9 +44,12 @@ class Client:
         :param msg: str
         :return: None
         """
-        self.client_socket.send(bytes(msg, "utf8"))
-        if msg == "{quit}":
-            self.client_socket.close()
+        try:
+            self.client_socket.send(bytes(msg, "utf8"))
+            if msg == "{quit}":
+                self.client_socket.close()
+        except Exception as e:
+            print(e)
 
 
     def get_messages(self):
